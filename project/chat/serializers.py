@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Chat, Message
 
+
 class ChatSerializer(serializers.ModelSerializer):
     class Meta:
         model = Chat
@@ -9,7 +10,7 @@ class ChatSerializer(serializers.ModelSerializer):
 class MessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Message
-        fields = ["id", "chat", "sender", "content", "created_at"]
+        fields = ["id", "chat", "sender", "content","is_read", "created_at"]
 
     def create(self, validated_data):
         validated_data["sender"] = self.context["request"].user
